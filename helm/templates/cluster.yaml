@@ -1,0 +1,49 @@
+{{- if .Values.cluster.enabled -}}
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: {{ .Values.prefix }}-cluster
+  region: ap-northeast-1
+  version: "1.14"
+
+iam:
+  serviceRoleARN: {{ quote .Values.role }}
+
+vpc:
+  id: {{ quote .Values.vpcId }}
+  cidr: {{ quote .Values.vpcCidr }}
+  subnets:
+    private:
+      {{ .Values.private1AZ}}:
+        id: {{ quote .Values.private1Id }}
+        cidr: {{ quote .Values.private1Cidr }}
+      {{ .Values.private2AZ}}:
+        id: {{ quote .Values.private2Id }}
+        cidr: {{ quote .Values.private2Cidr }}
+    public:
+      {{ .Values.public1AZ}}:
+        id: {{ quote .Values.public1Id }}
+        cidr: {{ quote .Values.public1Cidr }}
+      {{ .Values.public2AZ}}:
+        id: {{ quote .Values.public2Id }}
+        cidr: {{ quote .Values.public2Cidr }}
+  securityGroup: {{ quote .Values.workerSG }}
+
+nodeGroups:
+  - name: {{ .Values.prefix }}-node
+    instanceType: t3.medium
+    labels:
+      type: {{ .Values.prefix }}-node
+    desiredCapacity: 2
+    securityGroups:
+      attachIDs: [{{ quote .Values.workerSG }}]
+    privateNetworking: true
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+      withAddonPolicies:
+        albIngress: true
+{{- end }}

@@ -1,0 +1,25 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.prefix }}-ingress
+  namespace: {{ .Values.prefix }}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn:  {{ .Values.acm }}
+    alb.ingress.kubernetes.io/subnets: {{ .Values.public1Id }}, {{ .Values.public2Id }}
+    alb.ingress.kubernetes.io/security-groups: {{ .Values.albSG }}
+    alb.ingress.kubernetes.io/healthcheck-path: /api/health
+  labels:
+    app: grafana
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "example"
+              servicePort: 80
+{{- end }}

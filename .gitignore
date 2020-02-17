@@ -1,0 +1,9 @@
+# IDE
+.idea
+
+# terraform
+.terraform
+terraform.tfvars
+
+# helm
+values.yaml
