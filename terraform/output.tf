@@ -29,3 +29,15 @@ role: "${aws_iam_role.role.arn}"
 acm: "${aws_acm_certificate.acm.arn}"
 EOF
 }
+
+resource "local_file" "manifest" {
+  filename        = "../manifest/values.yaml"
+  file_permission = "0644"
+  content         = <<EOF
+deployments:
+  - name: hoge
+    url: ${aws_ecr_repository.ecr["hoge"].repository_url}:${lookup(var.repos, "hoge")}
+  - name: fuga
+    url: ${aws_ecr_repository.ecr["fuga"].repository_url}:${lookup(var.repos, "fuga")}
+EOF
+}

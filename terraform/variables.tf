@@ -14,8 +14,8 @@ variable "az" {
     "ap-northeast-1c"
   ]
 }
-variable "repo" {
-  type = list(string)
+variable "repos" {
+  type = map(string)
 }
 variable "domain" {
   type = string
