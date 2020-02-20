@@ -1,5 +1,5 @@
 resource "local_file" "cluster" {
-  filename        = "../helm/values.yaml"
+  filename        = "../../helm/values.yaml"
   file_permission = "0644"
   content         = <<EOF
 cluster:
@@ -31,13 +31,13 @@ EOF
 }
 
 resource "local_file" "manifest" {
-  filename        = "../manifest/values.yaml"
+  filename        = "../../manifest/values.yaml"
   file_permission = "0644"
   content         = <<EOF
 deployments:
-  - name: hoge
-    url: ${aws_ecr_repository.ecr["hoge"].repository_url}:${lookup(var.repos, "hoge")}
-  - name: fuga
-    url: ${aws_ecr_repository.ecr["fuga"].repository_url}:${lookup(var.repos, "fuga")}
+  - name: new
+    url: ${aws_ecr_repository.ecr["new"].repository_url}:${lookup(var.repos, "new")}
+  - name: post
+    url: ${aws_ecr_repository.ecr["post"].repository_url}:${lookup(var.repos, "post")}
 EOF
 }

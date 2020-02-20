@@ -27,6 +27,9 @@
 
     `aws configure --profile xxx`
 ## Usage
+### base
+You can create Network, Security Group and DNS to run EKS cluster.
+
 - init 
     
     `AWS_PROFILE=xxx terraform init`
@@ -47,6 +50,16 @@
       "ns-3333.awsdns-33.zzz"
     ]
     ```
+- create aws resources
+
+    `AWS_PROFILE=xxx terraform apply`
+### rds
+You can create RDS which is able to run with EKS cluster created by the previous heading.
+
+- init 
+    
+    `AWS_PROFILE=xxx terraform init`
+
 - create aws resources
 
     `AWS_PROFILE=xxx terraform apply`
