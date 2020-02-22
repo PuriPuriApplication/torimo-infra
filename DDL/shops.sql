@@ -1,4 +1,4 @@
-CREATE TABLE `Shops` (
+CREATE TABLE `shops` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `station_id` int DEFAULT 0,

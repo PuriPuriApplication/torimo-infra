@@ -1,4 +1,4 @@
-CREATE TABLE `ArticleTags` (
+CREATE TABLE `article_tags` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `create_user` int NOT NULL DEFAULT 0,
