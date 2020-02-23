@@ -1,7 +1,7 @@
 CREATE TABLE `follow_users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `from_user` int NOT NULL,
-  `to_user` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `from_user` bigint NOT NULL,
+  `to_user` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 

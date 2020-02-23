@@ -1,6 +1,6 @@
 CREATE TABLE `article_categories` (
-  `article_id` int NOT NULL,
-  `category_id` int NOT NULL,
+  `article_id` bigint NOT NULL,
+  `category_id` bigint NOT NULL,
   PRIMARY KEY (`article_id`, `category_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
