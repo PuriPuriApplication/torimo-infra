@@ -1,3 +1,6 @@
+variable "prefix" {
+  type = string
+}
 variable "db_version" {
   type = string
 }

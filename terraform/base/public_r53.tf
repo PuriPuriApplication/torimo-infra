@@ -1,23 +1,28 @@
 ## Hosted zone
-data "aws_route53_zone" "zone" {
-  name = var.domain
+resource "aws_route53_zone" "zone" {
+  name          = var.domain
+  force_destroy = true
 }
 
 ## Records
-resource "aws_route53_record" "bastion" {
-  zone_id = data.aws_route53_zone.zone.zone_id
-  name = format("bastion")
-  type = "A"
-  ttl = "300"
-  records = [aws_instance.bastion.public_ip]
-}
+### NS
+resource "aws_route53_record" "ns" {
+  zone_id = aws_route53_zone.zone.zone_id
+  name    = var.domain
+  type    = "NS"
+  ttl     = 172800
 
+  allow_overwrite = false
+
+  records = var.ns
+}
 
 ### Domain validation
 resource "aws_route53_record" "acm" {
-  zone_id = data.aws_route53_zone.zone.zone_id
-  name    = aws_acm_certificate.acm.domain_validation_options[0]["resource_record_name"]
-  type    = aws_acm_certificate.acm.domain_validation_options[0]["resource_record_type"]
+  count   = length(aws_acm_certificate.acm.domain_validation_options)
+  zone_id = aws_route53_zone.zone.zone_id
+  name    = aws_acm_certificate.acm.domain_validation_options[count.index]["resource_record_name"]
+  type    = aws_acm_certificate.acm.domain_validation_options[count.index]["resource_record_type"]
   ttl     = "300"
-  records = [aws_acm_certificate.acm.domain_validation_options[0]["resource_record_value"]]
+  records = [aws_acm_certificate.acm.domain_validation_options[count.index]["resource_record_value"]]
 }

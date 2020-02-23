@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 output "prefix" {
   value = var.prefix
 }
+=======
+>>>>>>> origin/master
 output "cidr_block" {
   value = var.cidr_block
 }
@@ -13,9 +16,12 @@ output "vpc_id" {
 output "worker_sg_id" {
   value = aws_security_group.worker-sg.id
 }
+<<<<<<< HEAD
 output "bastion_sg_id" {
   value = aws_security_group.bastion-sg.id
 }
+=======
+>>>>>>> origin/master
 output "private_rtb" {
   value = aws_route_table.private-rtb.id
 }
