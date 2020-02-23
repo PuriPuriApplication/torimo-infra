@@ -4,10 +4,9 @@ CREATE TABLE `articles` (
   `user_id` int NOT NULL,
   `shop_id` int,
   `body` text,
-  `is_deleted` boolean DEFAULT 0,
+  `status` varchar(16) NOT NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime,
-  `delete_at` datetime,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
@@ -17,6 +16,7 @@ articles
  `user_id`,
  `shop_id`,
  `body`,
+ `status`,
  `create_at`)
 VALUES
-('test_title', '1', '1', 'このお店おいしい！！', now());
+('test_title', '1', '1', 'このお店おいしい！！', 'publish', now());
