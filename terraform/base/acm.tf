@@ -7,3 +7,8 @@ resource "aws_acm_certificate" "acm" {
     Name = var.domain
   }
 }
+
+resource aws_acm_certificate_validation "cert" {
+  certificate_arn = aws_acm_certificate.acm.arn
+  validation_record_fqdns = [aws_route53_record.acm.fqdn]
+}

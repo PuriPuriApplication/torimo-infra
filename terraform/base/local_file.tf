@@ -1,5 +1,5 @@
 resource "local_file" "cluster" {
-  filename        = "../helm/values.yaml"
+  filename        = "../../helm/values.yaml"
   file_permission = "0644"
   content         = <<EOF
 cluster:
@@ -30,14 +30,16 @@ acm: "${aws_acm_certificate.acm.arn}"
 EOF
 }
 
+//data "aws_acm_certificate" "mshr-me-uk" {
+//  domain = "mshr.me.uk"
+//}
+
 resource "local_file" "manifest" {
-  filename        = "../manifest/values.yaml"
+  filename        = "../../manifest/values.yaml"
   file_permission = "0644"
   content         = <<EOF
-deployments:
-  - name: hoge
-    url: ${aws_ecr_repository.ecr["hoge"].repository_url}:${lookup(var.repos, "hoge")}
-  - name: fuga
-    url: ${aws_ecr_repository.ecr["fuga"].repository_url}:${lookup(var.repos, "fuga")}
+global:
+  core: ${aws_ecr_repository.ecr["torimo-core"].repository_url}:${lookup(var.repos, "torimo-core")}
+  post: ${aws_ecr_repository.ecr["torimo-post-api"].repository_url}:${lookup(var.repos, "torimo-post-api")}
 EOF
 }

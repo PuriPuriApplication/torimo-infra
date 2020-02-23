@@ -23,3 +23,9 @@ variable "domain" {
 variable "ns" {
   type = list(string)
 }
+variable "torimo-pub" {
+  type = string
+}
+variable "ssh_port" {
+  type = number
+}

@@ -105,3 +105,33 @@ resource "aws_security_group_rule" "master_out" {
   protocol          = "all"
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+## bastion
+resource "aws_security_group" "bastion-sg" {
+  name   = format("%s-sg-bastion", var.prefix)
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = format("%s-sg-bastion", var.prefix)
+  }
+}
+
+resource "aws_security_group_rule" "bastion_ssh_internet" {
+  security_group_id = aws_security_group.bastion-sg.id
+  type              = "ingress"
+  from_port         = var.ssh_port
+  to_port           = var.ssh_port
+  protocol          = "tcp"
+  cidr_blocks       = var.allow_ip
+  //  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "Allow internet access."
+}
+
+resource "aws_security_group_rule" "bastion_out" {
+  security_group_id = aws_security_group.bastion-sg.id
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "all"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
