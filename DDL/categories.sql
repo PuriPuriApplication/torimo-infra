@@ -1,7 +1,7 @@
 CREATE TABLE `categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `create_user` int NOT NULL DEFAULT 1,
+  `create_user` bigint NOT NULL DEFAULT 1,
   `is_deleted` boolean DEFAULT 0,
   `create_at` datetime NOT NULL,
   `delete_at` datetime,
