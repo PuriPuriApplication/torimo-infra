@@ -3,11 +3,21 @@ CREATE TABLE `articles` (
   `title` varchar(100) NOT NULL,
   `user_id` int NOT NULL,
   `shop_id` int,
-  `body` varchar(500),
-  `header_image` varchar(500),
+  `body` text,
+  `header_image` varchar(200),
   `is_deleted` boolean DEFAULT 0,
-  `create_at` datetime,
+  `create_at` datetime NOT NULL,
   `update_at` datetime,
   `delete_at` datetime,
   PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+INSERT INTO
+articles
+(`title`,
+ `user_id`,
+ `shop_id`,
+ `body`,
+ `create_at`)
+VALUES
+('test_title', '1', '1', 'このお店おいしい！！', now());

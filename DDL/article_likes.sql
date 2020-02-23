@@ -3,4 +3,6 @@ CREATE TABLE `article_likes` (
   `user_id` int NOT NULL,
   `article_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+INSERT INTO article_likes VALUES ('1', '1', '1');
