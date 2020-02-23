@@ -1,9 +1,9 @@
 CREATE TABLE `articles` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `user_id` bigint NOT NULL,
-  `shop_id` bigint,
-  `body` text NOT NULL,
+  `user_id` int NOT NULL,
+  `shop_id` int,
+  `body` text,
   `status` varchar(16) NOT NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime,
