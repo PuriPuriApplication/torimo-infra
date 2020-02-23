@@ -5,7 +5,17 @@
 # $4: database
 # bash execute_ddl.sh user password host database
 
-for file in $(ls sql_files); do
-  mysql -u $1 -p$2 -h $3 -D $4 < $PWD/sql_files/$file
-done
+. ./.env
 
+if [ $1 = "local" ]; then
+  echo "if"
+  DB_USER=torimo
+  DB_PASSWORD=torimo
+  DB_URL=127.0.0.1
+  DB_PORT=3306
+  DB_NAME=torimo
+fi
+
+for file in $(ls sql_files); do
+  mysql -u${DB_USER} -p${DB_PASSWORD} -h${DB_URL} -D${DB_NAME} -P${DB_PORT} < $PWD/sql_files/$file
+done

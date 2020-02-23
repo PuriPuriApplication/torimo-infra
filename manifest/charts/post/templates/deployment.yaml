@@ -29,11 +29,11 @@ spec:
               cpu: 50m
               memory: 256Mi
           env:
-            - name: USER
+            - name: DB_USER
               value: {{ .Values.user }}
-            - name: PASSWORD
+            - name: DB_PASSWORD
               value: {{ .Values.pass }}
-            - name: DBNAME
+            - name: DB_NAME
               value: {{ .Values.db }}
-            - name: URL
+            - name: DB_URL
               value: {{ .Values.endpoint }}

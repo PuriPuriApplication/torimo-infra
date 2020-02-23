@@ -7,3 +7,6 @@ terraform.tfvars
 
 # helm
 values.yaml
+
+# migration scirpt
+.env
