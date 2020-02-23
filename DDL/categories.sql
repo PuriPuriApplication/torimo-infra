@@ -1,4 +1,4 @@
-CREATE TABLE `article_tags` (
+CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `create_user` int NOT NULL DEFAULT 1,
@@ -9,7 +9,7 @@ CREATE TABLE `article_tags` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 INSERT INTO
-article_tags
+categories
 (`name`,
  `create_user`,
  `create_at`)

@@ -4,7 +4,6 @@ CREATE TABLE `articles` (
   `user_id` int NOT NULL,
   `shop_id` int,
   `body` text,
-  `header_image` varchar(200),
   `is_deleted` boolean DEFAULT 0,
   `create_at` datetime NOT NULL,
   `update_at` datetime,
