@@ -32,7 +32,7 @@ vpc:
 
 nodeGroups:
   - name: {{ .Values.prefix }}-node
-    instanceType: t3.medium
+    instanceType: t3.small
     labels:
       type: {{ .Values.prefix }}-node
     desiredCapacity: 2
