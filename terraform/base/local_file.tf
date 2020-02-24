@@ -30,24 +30,13 @@ acm: "${aws_acm_certificate.acm.arn}"
 EOF
 }
 
-//data "aws_acm_certificate" "mshr-me-uk" {
-//  domain = "mshr.me.uk"
-//}
-
 resource "local_file" "manifest" {
   filename        = "../../manifest/values.yaml"
   file_permission = "0644"
   content         = <<EOF
-<<<<<<< HEAD:terraform/base/local_file.tf
 global:
   core: ${aws_ecr_repository.ecr["torimo-core"].repository_url}:${lookup(var.repos, "torimo-core")}
   post: ${aws_ecr_repository.ecr["torimo-post-api"].repository_url}:${lookup(var.repos, "torimo-post-api")}
-=======
-deployments:
-  - name: new
-    url: ${aws_ecr_repository.ecr["new"].repository_url}:${lookup(var.repos, "new")}
-  - name: post
-    url: ${aws_ecr_repository.ecr["post"].repository_url}:${lookup(var.repos, "post")}
->>>>>>> origin/master:terraform/output.tf
+  migration: ${aws_ecr_repository.ecr["torimo-migration"].repository_url}:${lookup(var.repos, "torimo-migration")}
 EOF
 }

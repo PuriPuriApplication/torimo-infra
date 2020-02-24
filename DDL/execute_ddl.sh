@@ -8,7 +8,6 @@
 . ./.env
 
 if [ $1 = "local" ]; then
-  echo "if"
   DB_USER=torimo
   DB_PASSWORD=torimo
   DB_URL=127.0.0.1

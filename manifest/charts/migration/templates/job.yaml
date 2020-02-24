@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration
+  namespace: torimo
+  labels:
+    app: migration
+spec:
+  template:
+    metadata:
+      labels:
+        app: migration
+    spec:
+      containers:
+        - name: migration
+          image: {{ quote .Values.global.migration }}
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never
+  backoffLimit: 4

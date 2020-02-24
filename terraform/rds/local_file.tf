@@ -16,6 +16,7 @@ resource "local_file" "migration" {
 DB_USER=${var.username}
 DB_PASSWORD=${var.password}
 DB_NAME=${var.db_name}
-DB_URL=${aws_rds_cluster.cluster.endpoint}:3306
+DB_URL=${aws_rds_cluster.cluster.endpoint}
+DB_PORT=${aws_rds_cluster.cluster.port}
 EOF
 }
