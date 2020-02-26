@@ -7,7 +7,7 @@
 
 . ./.env
 
-if [ $1 = "local" ]; then
+if [ "$1" = "local" ]; then
   DB_USER=torimo
   DB_PASSWORD=torimo
   DB_URL=127.0.0.1
