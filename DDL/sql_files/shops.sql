@@ -1,4 +1,4 @@
-CREATE TABLE `shops` (
+CREATE TABLE IF NOT EXISTS `shops` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `station_id` bigint DEFAULT 0,
@@ -9,7 +9,7 @@ CREATE TABLE `shops` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO
+INSERT IGNORE INTO
 shops
 (`name`,
  `create_user`,

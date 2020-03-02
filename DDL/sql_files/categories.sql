@@ -1,4 +1,4 @@
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `create_user` bigint NOT NULL DEFAULT 1,
@@ -8,7 +8,7 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO
+INSERT IGNORE INTO
 categories
 (`name`,
  `create_user`,
