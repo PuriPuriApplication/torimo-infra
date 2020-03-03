@@ -15,6 +15,8 @@ if [ "$1" = "local" ]; then
   DB_NAME=torimo
 fi
 
+export MYSQL_PWD=${DB_PASSWORD}
+
 for file in $(ls sql_files); do
-  mysql -u${DB_USER} -p${DB_PASSWORD} -h${DB_URL} -D${DB_NAME} -P${DB_PORT} < $PWD/sql_files/$file
+  mysql -u${DB_USER} -h${DB_URL} -D${DB_NAME} -P${DB_PORT} < $PWD/sql_files/$file
 done

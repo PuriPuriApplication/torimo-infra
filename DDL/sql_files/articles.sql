@@ -1,4 +1,4 @@
-CREATE TABLE `articles` (
+CREATE TABLE IF NOT EXISTS `articles` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `user_id` bigint NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO
+INSERT IGNORE INTO
 articles
 (`title`,
  `user_id`,

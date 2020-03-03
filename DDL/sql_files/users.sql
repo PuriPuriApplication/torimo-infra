@@ -1,4 +1,4 @@
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `external_service_id` varchar(50) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO
+INSERT IGNORE INTO
 users
 (`name`,
  `external_service_id`,
